@@ -12,17 +12,17 @@
 
 ActiveRecord::Schema.define(version: 20230305024829) do
 
-  create_table "posts", force: :cascade do |t|
+  create_table "posts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci" do |t|
     t.string "title"
     t.text "content"
     t.boolean "is_available"
-    t.integer "user_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci" do |t|
     t.string "name"
     t.string "email"
     t.string "tel"
@@ -30,4 +30,5 @@ ActiveRecord::Schema.define(version: 20230305024829) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "posts", "users"
 end

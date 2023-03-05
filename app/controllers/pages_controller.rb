@@ -7,7 +7,7 @@ class PagesController < ApplicationController
     @host = Socket.gethostname
     @ip = Socket.ip_address_list.find { |allip| allip.ipv4? && !allip.ipv4_loopback? }.ip_address
     @remote_ip = request.remote_ip
-
     #@time = Time.current
+    @adapter = ActiveRecord::Base.connection.adapter_name
   end
 end
